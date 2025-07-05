@@ -11,7 +11,7 @@ class Exercise {
     let bodyParts: [String]
     let category: String
     let description: String
-    let difficulty: String
+    let difficulty: Difficulty
     let demonstrationVideoURL: URL?
     let id: String
     let instructions: [String]
@@ -22,7 +22,7 @@ class Exercise {
         self.bodyParts = [bodyPart]
         self.category = category
         self.description = description
-        self.difficulty = difficulty
+        self.difficulty = Difficulty.init(rawValue: difficulty) ?? .beginner
         self.demonstrationVideoURL = gifURL
         self.id = id
         self.instructions = instructions
