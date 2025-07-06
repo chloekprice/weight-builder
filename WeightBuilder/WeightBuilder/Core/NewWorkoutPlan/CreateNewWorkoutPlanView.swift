@@ -8,8 +8,48 @@
 import SwiftUI
 
 struct CreateNewWorkoutPlanView: View {
+    @State var name: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                newPlanName
+                addedExercises
+                addNewExercise
+                actionButtons
+            }.padding(.horizontal)
+        }
+    }
+    
+    private var addNewExercise: some View {
+        Text("Add New Exercise")
+    }
+    
+    private var addedExercises: some View {
+        Text("Added Exercises")
+    }
+    
+    private var actionButtons: some View {
+        HStack {
+            cancelButton
+            Spacer()
+            createButton
+        }.padding(.horizontal, 60)
+    }
+    
+    private var cancelButton: some View {
+        Button("Cancel") {}
+            .buttonStyle(.borderless)
+    }
+    
+    private var createButton: some View {
+        Button("Create") {}
+            .buttonStyle(.borderedProminent)
+    }
+    
+    private var newPlanName: some View {
+        TextField("name", text: $name)
+            .textFieldStyle(.roundedBorder)
     }
 }
 
