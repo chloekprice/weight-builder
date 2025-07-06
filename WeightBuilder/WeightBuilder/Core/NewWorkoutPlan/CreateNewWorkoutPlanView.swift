@@ -32,7 +32,9 @@ struct CreateNewWorkoutPlanView: View {
                 Text("add another exercise")
                     .font(Font.system(size: 24))
             }.padding()
-        }.buttonStyle(.borderedProminent)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(Color(.secondaryButton))
     }
     
     private var addedExercises: some View {
