@@ -22,7 +22,17 @@ struct CreateNewWorkoutPlanView: View {
     }
     
     private var addNewExercise: some View {
-        Text("Add New Exercise")
+        Button {
+            
+        } label: {
+            HStack() {
+                Image(systemName: "plus")
+                    .font(Font.system(size: 24))
+                Spacer()
+                Text("add another exercise")
+                    .font(Font.system(size: 24))
+            }.padding()
+        }.buttonStyle(.borderedProminent)
     }
     
     private var addedExercises: some View {
