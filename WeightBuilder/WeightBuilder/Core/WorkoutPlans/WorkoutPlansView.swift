@@ -9,7 +9,22 @@ import SwiftUI
 
 struct WorkoutPlansView: View {
     var body: some View {
-        Text("My Workout Plans")
+        ZStack {
+            ScrollView { Text("My Workout Plans") }
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 60))
+                    }
+                }.padding(24)
+            }
+        }
     }
 }
 
