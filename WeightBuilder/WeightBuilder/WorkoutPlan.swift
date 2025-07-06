@@ -10,7 +10,8 @@ import Foundation
 class WorkoutPlan {
     let name: String
     let id: UUID
-    let exercises: [Exercise: [Int: Int]]
+    typealias SetsToReps = [Int: Int]
+    let exercises: [Exercise: SetsToReps]
     let dateCreated: Date
     let lastWorkoutDate: Date?
     
