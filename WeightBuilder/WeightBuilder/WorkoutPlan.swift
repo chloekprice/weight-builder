@@ -8,19 +8,24 @@
 import Foundation
 
 class WorkoutPlan {
-    let name: String
-    let id: UUID
-    typealias SetsToReps = [Int: Int]
-    let exercises: [Exercise: SetsToReps]
     let dateCreated: Date
+    let exercises: [Exercise: SetsToReps]
+    let id: UUID
     let lastWorkoutDate: Date?
+    let name: String
     
-    init(name: String, id: UUID = UUID(), exercises: [Exercise: [Int: Int]], dateCreated: Date = Date(), lastWorkoutDate: Date? = nil) {
-        self.name = name
-        self.id = id
-        self.exercises = exercises
+    typealias SetsToReps = [Int: Int]
+    
+    init(name: String,
+         id: UUID = UUID(),
+         exercises: [Exercise: [Int: Int]],
+         dateCreated: Date = Date(),
+         lastWorkoutDate: Date? = nil) {
+        
         self.dateCreated = dateCreated
+        self.exercises = exercises
+        self.id = id
         self.lastWorkoutDate = lastWorkoutDate
+        self.name = name
     }
-    
 }
