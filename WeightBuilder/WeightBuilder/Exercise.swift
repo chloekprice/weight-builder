@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Exercise: Hashable {
+class Exercise: Hashable, Identifiable {
     let bodyParts: [String]
     let category: String
     let description: String
