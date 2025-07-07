@@ -28,7 +28,16 @@ struct ExerciseSearchView: View {
     var body: some View {
             NavigationView {
                 List(filteredItems, selection: $selectedItems) { item in
-                    Text(item.name)
+                    Button {
+                        if !selectedItems.contains(item) {
+                            selectedItems.insert(item)
+                        } else {
+                            selectedItems.remove(item)
+                        }
+                    } label: {
+                        Text(item.name)
+                    }
+                    .buttonStyle(.bordered).tint(selectedItems.contains(item) ? .secondaryButton : .none)
                 }
                 .searchable(text: $searchText, prompt: "search exercises")
             }
