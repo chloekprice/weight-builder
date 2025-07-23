@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateNewWorkoutPlanView: View {
     @State var name: String = ""
+    @State var exercises: [Exercise] = []
     
     var body: some View {
         ScrollView {
@@ -40,7 +41,9 @@ struct CreateNewWorkoutPlanView: View {
     }
     
     private var addedExercises: some View {
-        Text("Added Exercises")
+        List(exercises) { exercise in
+            ExerciseCard(name: exercise.name)
+        }
     }
     
     private var actionButtons: some View {
