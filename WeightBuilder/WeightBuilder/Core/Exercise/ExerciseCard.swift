@@ -18,7 +18,7 @@ struct ExerciseCard: View {
             exerciseImage
             exerciseDetail
             Spacer()
-        }.padding(.horizontal)
+        }
     }
     
     
