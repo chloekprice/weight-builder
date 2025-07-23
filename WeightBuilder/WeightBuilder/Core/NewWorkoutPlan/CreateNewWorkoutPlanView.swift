@@ -10,7 +10,8 @@ import SwiftUI
 struct CreateNewWorkoutPlanView: View {
     @State var name: String = ""
     @State var exercises: [Exercise] = []
-    
+    @State var showSearchView: Bool = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -22,11 +23,14 @@ struct CreateNewWorkoutPlanView: View {
                 actionButtons
             }.padding(.horizontal)
         }
+        .popover(isPresented: $showSearchView) {
+            ExerciseSearchView()
+        }
     }
     
     private var addNewExercise: some View {
         Button {
-            
+            showSearchView = true
         } label: {
             HStack() {
                 Image(systemName: "plus")
