@@ -26,22 +26,22 @@ struct ExerciseSearchView: View {
         }
 
     var body: some View {
-            NavigationView {
-                List(filteredItems, selection: $selectedItems) { item in
-                    Button {
-                        if !selectedItems.contains(item) {
-                            selectedItems.insert(item)
-                        } else {
-                            selectedItems.remove(item)
-                        }
-                    } label: {
-                        Text(item.name)
+        NavigationView {
+            List(filteredItems, selection: $selectedItems) { item in
+                Button {
+                    if !selectedItems.contains(item) {
+                        selectedItems.insert(item)
+                    } else {
+                        selectedItems.remove(item)
                     }
-                    .buttonStyle(.bordered).tint(selectedItems.contains(item) ? .secondaryButton : .none)
+                } label: {
+                    Text(item.name)
                 }
-                .searchable(text: $searchText, prompt: "search exercises")
+                .buttonStyle(.bordered).tint(selectedItems.contains(item) ? .secondaryButton : .none)
             }
+            .searchable(text: $searchText, prompt: "search exercises")
         }
+    }
 }
 
 #Preview {
