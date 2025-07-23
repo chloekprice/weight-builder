@@ -13,18 +13,23 @@ struct CreateNewWorkoutPlanView: View {
     @State var showSearchView: Bool = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                planName
-                enterNewPlanName
-                addedExercises
-                addNewExercise
-                Spacer().frame(minHeight: 40)
-                actionButtons
-            }.padding(.horizontal)
-        }
-        .popover(isPresented: $showSearchView) {
-            ExerciseSearchView(showSearchView: $showSearchView, exercises: $exercises)
+        ZStack {
+            Color(.primaryBackground)
+                .ignoresSafeArea()
+            
+            ScrollView {
+                VStack(alignment: .leading) {
+                    planName
+                    enterNewPlanName
+                    addedExercises
+                    addNewExercise
+                    Spacer().frame(minHeight: 40)
+                    actionButtons
+                }.padding(.horizontal)
+            }
+            .popover(isPresented: $showSearchView) {
+                ExerciseSearchView(showSearchView: $showSearchView, exercises: $exercises)
+            }
         }
     }
     
@@ -45,8 +50,11 @@ struct CreateNewWorkoutPlanView: View {
     }
     
     private var addedExercises: some View {
-        List(exercises) { exercise in
+        ForEach(exercises, id: \.self) { exercise in
             ExerciseCard(name: exercise.name)
+                .padding()
+                .background { Color.white }
+                .cornerRadius(12)
         }
     }
     
