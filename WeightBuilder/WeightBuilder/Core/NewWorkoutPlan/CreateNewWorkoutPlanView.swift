@@ -55,6 +55,11 @@ struct CreateNewWorkoutPlanView: View {
                 .padding()
                 .background { Color.white }
                 .cornerRadius(12)
+                .contextMenu {
+                    moreInfoButton
+                    editRepsOrSetsButton
+                    removeExerciseButton
+                }
         }
     }
     
@@ -76,15 +81,39 @@ struct CreateNewWorkoutPlanView: View {
             .buttonStyle(.borderedProminent)
     }
     
+    private var editRepsOrSetsButton: some View {
+        Button {
+            
+        } label: {
+            Label("Edit sets/reps", systemImage: "hammer")
+        }
+    }
+    
     private var enterNewPlanName: some View {
         TextField("edit plan name", text: $name)
             .textFieldStyle(.roundedBorder)
             .textInputAutocapitalization(.never)
     }
     
+    private var moreInfoButton: some View {
+        Button {
+            
+        } label: {
+            Label("More info", systemImage: "info.circle")
+        }
+    }
+    
     private var planName: some View {
         Text(name.isEmpty ? "New Plan" : name)
             .font(.largeTitle).fontWeight(.bold)
+    }
+    
+    private var removeExerciseButton: some View {
+        Button(role: .destructive) {
+            
+        } label: {
+            Label("Remove", systemImage: "trash")
+        }
     }
 }
 

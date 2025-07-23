@@ -22,24 +22,24 @@ struct ExerciseCard: View {
     }
     
     
-    var exerciseDescription: some View {
+    private var exerciseDescription: some View {
         Text("\(numSets) sets of \(numReps) reps")
     }
     
-    var exerciseDetail: some View {
+    private var exerciseDetail: some View {
         VStack(alignment: .leading){
             exerciseName
             exerciseDescription
         }
     }
     
-    var exerciseImage: some View {
+    private var exerciseImage: some View {
         Image(systemName: image)
             .resizable()
             .frame(width: 72, height: 72)
     }
     
-    var exerciseName: some View {
+    private var exerciseName: some View {
         Text(name)
             .font(.title)
     }
