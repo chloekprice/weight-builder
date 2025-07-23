@@ -10,34 +10,37 @@ import SwiftUI
 
 struct ExerciseSearchView: View {
     @State private var searchText = ""
-        @State private var selectedItems = Set<Exercise>()
-        @State private var isEditing = false
+    @State private var selectedItem: Exercise?
         
         let allItems: [Exercise] = [
-            Exercise(name: "Chest Press", id: "1234", bodyPart: "chest", target: "chest", secondaryMuscles: ["biceps", "triceps"], description: "Push up", gifURL: nil, difficulty: Difficulty.beginner.rawValue, category: "push", instructions: ["do this"])
+            Exercise(name: "Chest Press", id: "1234", bodyPart: "chest", target: "chest", secondaryMuscles: ["biceps", "triceps"], description: "Push up", gifURL: nil, difficulty: Difficulty.beginner.rawValue, category: "push", instructions: ["do this"]),
+            Exercise(name: "Squat", id: "3456", bodyPart: "chest", target: "chest", secondaryMuscles: ["triceps"], description: "Push up", gifURL: nil, difficulty: Difficulty.beginner.rawValue, category: "push", instructions: ["do this"]),
+            Exercise(name: "Deadlift", id: "87654", bodyPart: "chest", target: "chest", secondaryMuscles: ["quads"], description: "Push up", gifURL: nil, difficulty: Difficulty.beginner.rawValue, category: "push", instructions: ["do this"])
         ]
         
         var filteredItems: [Exercise] {
             if searchText.isEmpty {
                 return allItems
             } else {
-                return allItems.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+                return allItems.filter { $0.name.localizedCaseInsensitiveContains(searchText) ||
+                    $0.bodyParts.contains(where: { bodyPart in
+                        bodyPart.localizedCaseInsensitiveContains(searchText)
+                    }) ||
+                    $0.muscles.contains(where: { muscle in
+                        muscle.localizedCaseInsensitiveContains(searchText)
+                    })
+                }
             }
         }
 
     var body: some View {
         NavigationView {
-            List(filteredItems, selection: $selectedItems) { item in
+            List(filteredItems) { item in
                 Button {
-                    if !selectedItems.contains(item) {
-                        selectedItems.insert(item)
-                    } else {
-                        selectedItems.remove(item)
-                    }
+                   // add exercise to plan and dismiss search view
                 } label: {
-                    Text(item.name)
+                    ExerciseCard(name: item.name)
                 }
-                .buttonStyle(.bordered).tint(selectedItems.contains(item) ? .secondaryButton : .none)
             }
             .searchable(text: $searchText, prompt: "search exercises")
         }
