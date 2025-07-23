@@ -24,7 +24,7 @@ struct CreateNewWorkoutPlanView: View {
             }.padding(.horizontal)
         }
         .popover(isPresented: $showSearchView) {
-            ExerciseSearchView()
+            ExerciseSearchView(showSearchView: $showSearchView, exercises: $exercises)
         }
     }
     

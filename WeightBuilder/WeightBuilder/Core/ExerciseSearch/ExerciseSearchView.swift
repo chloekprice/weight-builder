@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ExerciseSearchView: View {
     @State private var searchText = ""
-    @State private var selectedItem: Exercise?
+    @Binding var showSearchView: Bool
+    @Binding var exercises: [Exercise]
         
         let allItems: [Exercise] = [
             Exercise(name: "Chest Press", id: "1234", bodyPart: "chest", target: "chest", secondaryMuscles: ["biceps", "triceps"], description: "Push up", gifURL: nil, difficulty: Difficulty.beginner.rawValue, category: "push", instructions: ["do this"]),
@@ -37,7 +38,8 @@ struct ExerciseSearchView: View {
         NavigationView {
             List(filteredItems) { item in
                 Button {
-                   // add exercise to plan and dismiss search view
+                    exercises.append(item)
+                    showSearchView = false
                 } label: {
                     ExerciseCard(name: item.name)
                 }
@@ -48,5 +50,5 @@ struct ExerciseSearchView: View {
 }
 
 #Preview {
-    ExerciseSearchView()
+    ExerciseSearchView(showSearchView: .constant(true), exercises: .constant([]))
 }
