@@ -12,10 +12,12 @@ struct CreateNewWorkoutPlanView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                newPlanName
+            VStack(alignment: .leading) {
+                planName
+                enterNewPlanName
                 addedExercises
                 addNewExercise
+                Spacer().frame(minHeight: 40)
                 actionButtons
             }.padding(.horizontal)
         }
@@ -30,7 +32,7 @@ struct CreateNewWorkoutPlanView: View {
                     .font(Font.system(size: 24))
                 Spacer()
                 Text("add another exercise")
-                    .font(Font.system(size: 24))
+                    .font(.callout)
             }.padding()
         }
         .buttonStyle(.borderedProminent)
@@ -59,9 +61,15 @@ struct CreateNewWorkoutPlanView: View {
             .buttonStyle(.borderedProminent)
     }
     
-    private var newPlanName: some View {
-        TextField("name", text: $name)
+    private var enterNewPlanName: some View {
+        TextField("edit plan name", text: $name)
             .textFieldStyle(.roundedBorder)
+            .textInputAutocapitalization(.never)
+    }
+    
+    private var planName: some View {
+        Text(name.isEmpty ? "New Plan" : name)
+            .font(.largeTitle).fontWeight(.bold)
     }
 }
 
